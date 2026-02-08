@@ -1,6 +1,7 @@
+from utils.helpers import call_mistral
+
 class CoderAgent:
-    """Generates code based on plan"""
     def generate_code(self, plan):
-        code = "\n".join([f"# Step: {step}" for step in plan])
-        code += "\n\nprint('Hello from CrossAgenticHub!')"
+        prompt = f"Generate Python code for the following steps:\n{plan}"
+        code = call_mistral(prompt)
         return code

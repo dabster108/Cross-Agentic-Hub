@@ -1,11 +1,8 @@
+from utils.helpers import call_mistral
+
 class PlannerAgent:
-    """Splits a high-level goal into actionable steps"""
     def plan(self, goal: str):
-        steps = [
-            "Understand the requirement",
-            "Define project structure",
-            "Setup FastAPI app",
-            "Generate APIs and endpoints",
-            "Validate and test code"
-        ]
+        prompt = f"Break down the following goal into clear actionable steps:\nGoal: {goal}"
+        plan_text = call_mistral(prompt)
+        steps = plan_text.split("\n")
         return steps

@@ -1,7 +1,7 @@
+from utils.helpers import call_mistral
+
 class ValidatorAgent:
-    """Validates / fixes code (placeholder for now)"""
     def validate(self, code):
-        if len(code) > 0:
-            return {"status": "success", "message": "Code generated correctly."}
-        else:
-            return {"status": "error", "message": "Code is empty."}
+        prompt = f"Check if this code is correct and provide fixes if needed:\n{code}"
+        validation = call_mistral(prompt)
+        return validation
